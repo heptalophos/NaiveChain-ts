@@ -1,0 +1,14 @@
+{
+  "name": "naivechain",
+  "version": "0.0.1",
+  "description": "A Simple blockchain in typescript",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "author": "Chris NP",
+  "license": "ISC"
+}
