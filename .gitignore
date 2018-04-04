@@ -60,3 +60,6 @@ _ReSharper*/
 __pycache__/
 Notes.txt
 
+# Dependencies
+node_modules/*
+

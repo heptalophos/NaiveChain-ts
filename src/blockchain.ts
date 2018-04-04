@@ -1,4 +1,4 @@
-import * as CryptoJS from 'crypto-js';
+import * as CryptoJS from 'crypto-js' 
 
 
 class Block {
@@ -25,10 +25,10 @@ const calculateHashForBlock = (block : Block): string =>
 
 // const genesisBlock: Block  = new Block (0, '', '', Date.now(), '')
 const genesisBlock : Block  = 
-    new Block (0, '0123456789abcdef0123456789abcdef0123456789abcdeffedcba9876543210', null, Date().getTime(), '')
+    new Block (0, '0123456789abcdef0123456789abcdef0123456789abcdeffedcba9876543210', null, new Date().getTime(), 'Hello World')
 
 const generateBlock = (blockData : string) => {
-    const prevBlock : Block = getLastBlock()
+    const prevBlock : Block = lastBlock()
     const nextIndex : number = prevBlock.index + 1
     const nextTimestamp : number = new Date().getTime() / 1000
     const nextHash : string = computeHash(nextIndex, prevBlock.hash, nextTimestamp, blockData)
@@ -38,6 +38,11 @@ const generateBlock = (blockData : string) => {
 
 // and finally the blockchain : a list of blocks
 const blockchain : Block[] = [genesisBlock]
+
+
+const lastBlock = () : Block  => {
+    return blockchain[blockchain.length - 1]
+}
 
 const isValidBlock = (newBlock : Block, prevBlock : Block) => {
     if (prevBlock.index + 1 !== newBlock.index) {
@@ -56,8 +61,4 @@ const isValidBlock = (newBlock : Block, prevBlock : Block) => {
     return true
 }
 
-
-
-
-
-
+export {Block, blockchain, computeHash, generateBlock, genesisBlock, lastBlock, isValidBlock, calculateHashForBlock}
