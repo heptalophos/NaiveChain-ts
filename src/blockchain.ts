@@ -20,15 +20,15 @@ class Block {
 const computeHash = (index:number, prevHash:string, timestamp:number, data:string):string => 
     CryptoJS.SHA256(index + prevHash + timestamp + data).toString()
 
-const calculateHashForBlock = (block : Block): string =>
+const computeHashForBlock = (block : Block): string =>
     CryptoJS.SHA256(block.index + block.prevHash + block.timestamp + block.data).toString();
 
 // const genesisBlock: Block  = new Block (0, '', '', Date.now(), '')
 const genesisBlock : Block  = 
-    new Block (0, '0123456789abcdef0123456789abcdef0123456789abcdeffedcba9876543210', null, new Date().getTime(), 'Hello World')
+    new Block (0, '0123456789abcdef0123456789abcdef0123456789abcdeffedcba9876543210', '', new Date().getTime(), 'Hello World')
 
 const generateBlock = (blockData : string) => {
-    const prevBlock : Block = lastBlock()
+    const prevBlock : Block = lastBlock(blockchain)
     const nextIndex : number = prevBlock.index + 1
     const nextTimestamp : number = new Date().getTime() / 1000
     const nextHash : string = computeHash(nextIndex, prevBlock.hash, nextTimestamp, blockData)
@@ -40,8 +40,8 @@ const generateBlock = (blockData : string) => {
 const blockchain : Block[] = [genesisBlock]
 
 
-const lastBlock = () : Block  => {
-    return blockchain[blockchain.length - 1]
+const lastBlock = (chain : Block[]) : Block  => {
+    return chain[chain.length - 1]
 }
 
 const isValidBlock = (newBlock : Block, prevBlock : Block) => {
@@ -53,12 +53,24 @@ const isValidBlock = (newBlock : Block, prevBlock : Block) => {
         console.log( " Invalid hash in previous block ")
         return false
     } 
-    else if (calculateHashForBlock(newBlock) !== newBlock.hash) {
-        console.log(typeof (newBlock.hash) + ' ' + typeof calculateHashForBlock(newBlock));
-        console.log('invalid hash: ' + calculateHashForBlock(newBlock) + ' ' + newBlock.hash)
+    else if (computeHashForBlock(newBlock) !== newBlock.hash) {
+        console.log(typeof (newBlock.hash) + ' ' + typeof computeHashForBlock(newBlock));
+        console.log('invalid hash: ' + computeHashForBlock(newBlock) + ' ' + newBlock.hash)
         return false
     }
     return true
 }
 
-export {Block, blockchain, computeHash, generateBlock, genesisBlock, lastBlock, isValidBlock, calculateHashForBlock}
+const isValidBlockStructure = ( block : Block ) : boolean => {
+    return typeof block.index === 'number'
+        && typeof block.hash === 'string'
+        && typeof block.prevHash === 'string'
+        && typeof block.timestamp === 'number'
+        && typeof block.data === 'string'
+}
+
+
+
+
+export {Block, blockchain, computeHash, generateBlock, genesisBlock, lastBlock, 
+        isValidBlock, isValidBlockStructure, computeHashForBlock}

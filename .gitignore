@@ -49,17 +49,11 @@ Temporary Items
 # Tooling and IDE specific files and directories
 .vscode/
 .idea/
-[Dd]ebug*/
-[Rr]elease*/
-[Bb]uild*/
-obj/
-[Bb]in
-_ReSharper*/
-*.resharper
-[Tt]est[Rr]esult*
-__pycache__/
 Notes.txt
-
-# Dependencies
 node_modules/*
+npm-debug.log
+.idea
+src/*.js
+src/*.map
+
 
