@@ -20,12 +20,12 @@ class Block {
         return CryptoJS.SHA256(index + prevHash + timestamp + data).toString()
     }
 
-    isValidBlockStructure ( block : Block ) : boolean {
-        return typeof block.index === 'number'
-            && typeof block.hash === 'string'
-            && typeof block.prevHash === 'string'
-            && typeof block.timestamp === 'number'
-            && typeof block.data === 'string'
+    isValidBlockStructure () : boolean {
+        return typeof this.index === 'number'
+            && typeof this.hash === 'string'
+            && typeof this.prevHash === 'string'
+            && typeof this.timestamp === 'number'
+            && typeof this.data === 'string'
     }
 
     to_string () : string {

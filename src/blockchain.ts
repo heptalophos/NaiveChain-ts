@@ -3,15 +3,15 @@ import { Block } from './block'
 
 class Blockchain {
 
-    public chain : Block[]
+    public chain : Block[] = []
 
     constructor () {
         // populate the chain with the genesisBlock
-        this.chain = [this.genesisBlock()]
+        this.chain.push(this.genesisBlock())
     }
 
     genesisBlock () : Block {
-        return new Block (0, '0123456789abcdef0123456789abcdef0123456789abcdeffedcba9876543210', '', new Date().getTime(), 'Hello World')
+        return new Block (0, '0123456789abcdef0123456789abcdef0123456789abcdeffedcba9876543210', null, new Date().getTime(), 'Hello World')
     }
 
     lastBlock () {
@@ -31,9 +31,9 @@ class Blockchain {
             console.log( " Invalid hash in previous block ")
             return false
         } 
-        else if (computeHashForBlock(newBlock) !== newBlock.hash) {
-            console.log(typeof (newBlock.hash) + ' ' + typeof computeHashForBlock(newBlock));
-            console.log('invalid hash: ' + computeHashForBlock(newBlock) + ' ' + newBlock.hash)
+        else if (this.computeHashForBlock(newBlock) !== newBlock.hash) {
+            console.log(typeof (newBlock.hash) + ' ' + typeof this.computeHashForBlock(newBlock));
+            console.log('invalid hash: ' + this.computeHashForBlock(newBlock) + ' --- ' + newBlock.hash)
             return false
         }
         return true
@@ -42,15 +42,18 @@ class Blockchain {
     addBlock (block : Block, chain : Block[]) {
         if(this.isValidBlock(block, this.lastBlock())) {
             chain.push(block)
-            console.log("Chain last: " + block.index)
         }
-    }   
+    }  
+    
+    computeHashForBlock (block : Block) : string {
+        return this.computeHash(block.index, block.prevHash, block.timestamp, block.data)
+    }
 
-    generateBlock ( blockData: string, chain : Block[] ) : Block {
+    generateBlock ( blockData: string) : Block {
         const prevBlock : Block = this.lastBlock()
         const nextIndex : number = prevBlock.index + 1
         const nextTimestamp : number = new Date().getTime() / 1000
-        const nextHash : string = this.computeHash(nextIndex, prevBlock.hash, nextTimestamp, blockData)
+        const nextHash : string = prevBlock.computeHash(nextIndex, prevBlock.hash, nextTimestamp, blockData)
         const newBlock : Block = new Block(nextIndex, nextHash, prevBlock.hash, nextTimestamp, blockData)
         this.addBlock(newBlock, this.chain)
         return newBlock
