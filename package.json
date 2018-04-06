@@ -2,7 +2,7 @@
   "name": "naivechain",
   "version": "0.0.1",
   "description": "A simple typescript blockchain",
-  "main": "index.js",
+  "main": "",
   "directories": {
     "test": "test"
   },
