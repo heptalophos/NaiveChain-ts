@@ -7,19 +7,14 @@ import 'mocha'
 
 describe ('Basic block & blockchain creation and validation', () => {
 
-    // let chain1, chain2
-    // beforeEach(() => {
-        
-    // })
+    let chain1, chain2
+
+    beforeEach(() => {
+        chain1 = new Blockchain()
+        chain2 = new Blockchain()
+    })
 
     it('creates a new blockchain containing the genesis block', () => {
-        let chain1 = new Blockchain()
-        let chain2 = new Blockchain()
-        // console.log("Block: ", chain1.chain[0].index)
-        // console.log("Hash: ", chain1.chain[0].hash)
-        // console.log("Previous Hash: ", chain1.chain[0].prevHash)
-        // console.log("Timestamp: ", chain1.chain[0].timestamp)
-        // console.log("Payload: ", chain1.chain[0].data)
         expect(chain1.chain.length).to.not.equal(0)
         expect(chain2.chain.length).to.not.equal(0)
         expect(chain1.chain[0].index).to.equal(0)
@@ -34,8 +29,6 @@ describe ('Basic block & blockchain creation and validation', () => {
     });
 
     it('generates valid blocks', () => {
-        let chain1 = new Blockchain()
-        let chain2 = new Blockchain()
         let bl2 = chain1.generateBlock('Hello Again!')
         let bl3 = chain2.generateBlock('Hello There!')
         expect(bl2.index).to.equal(1)
@@ -46,15 +39,11 @@ describe ('Basic block & blockchain creation and validation', () => {
     });
 
     it('... and adds them to the chain', () => {
-        let chain1 = new Blockchain()
-        let chain2 = new Blockchain()
         let bl2 = chain1.generateBlock('Hello Again!')
         let bl3 = chain2.generateBlock('Hello There!')
     })
 
     it('gets the last block each time', () => {
-        let chain1 = new Blockchain()
-        let chain2 = new Blockchain()
         let bk2 = chain1.generateBlock('Hello Again!')
         let bk3 = chain2.generateBlock('Hello There!')
         expect(chain1.lastBlock().index).to.equal(1)
@@ -63,21 +52,18 @@ describe ('Basic block & blockchain creation and validation', () => {
     })
 
     it('validates a new block', () => {
-        let chain1 = new Blockchain()
         let bk1 = chain1.generateBlock('Bravo')
         expect(chain1.isValidBlock(bk1, chain1.chain[0])).to.be.true
     })
 
     it('... and determines that it has a correct structure', () => {
-        let chain1 = new Blockchain()
         let bk1 = chain1.generateBlock('Alpha')
         expect(bk1.isValidBlockStructure()).to.be.true
         expect(chain1.chain[1].isValidBlockStructure()).to.be.true
     })
 
-    // afterEach(() => {
-    //     let chain1 = null 
-    //     let chain2 = null
-    // })
+    afterEach(() => {
+        let chain1, chain2
+    })
 
 } )
