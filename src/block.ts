@@ -16,7 +16,11 @@ class Block {
         this.hash = hash
     }
 
-    computeHash (index:number, prevHash:string, timestamp:number, data:string) : string {
+    getIndex (): number {
+        return this.index
+    }
+
+    static computeHash (index:number, prevHash:string, timestamp:number, data:string) : string {
         return CryptoJS.SHA256(index + prevHash + timestamp + data).toString()
     }
 

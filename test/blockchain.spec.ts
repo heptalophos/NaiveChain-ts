@@ -5,7 +5,7 @@ import { expect, should } from 'chai'
 import 'mocha'
 
 
-describe ('Basic block & blockchain creation and validation', () => {
+describe ('Blockchain creation and validation', () => {
 
     let chain1, chain2
 
@@ -35,7 +35,7 @@ describe ('Basic block & blockchain creation and validation', () => {
         expect(bl2.prevHash).to.not.be.empty
         expect(chain1.chain[1].data).to.equal('Hello Again!')
         expect(chain2.chain[1].data).to.equal('Hello There!')
-        expect(bl2.hash).to.equal(bl2.computeHash(bl2.index, chain1.chain[0].hash, bl2.timestamp, bl2.data))
+        expect(bl2.hash).to.equal(Block.computeHash(bl2.index, chain1.chain[0].hash, bl2.timestamp, bl2.data))
     });
 
     it('... and adds them to the chain', () => {
