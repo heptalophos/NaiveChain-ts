@@ -6,18 +6,22 @@ import 'mocha'
 
 describe ('Single Block creation and validation', () => {
 
-    let block1, block2,  ts
+    let block1, block2, ts, newHash
 
     beforeEach (() => {
         ts = new Date().getTime()
-        block1 = new Block(0, null, null, ts, "")
-        block2 = null
+        newHash = Block.computeHash(0, null, ts, "Hello World!!!")
+        block1 = new Block(0, newHash, null, ts, "Hello World!!!")
+        block2 = new Block(0, null, null, ts, "Hello Again!!")
     })
 
     it ('creates a generic block, ...', () => {
-        
-        let newHash = Block.computeHash(0, null, ts, "Hello World!!!")
-        let block1 = new Block(0, newHash, null, ts, "Hello World!!!")
-        expect(block1.index).to.equal(0)
+        console.log(block1.to_string())
+        block1.index.should.equal(0)
+        block1.prevHash.should.be.null
+        block1.hash.should.be.a('string')
+        block1.hash.should.equal(newHash)
+        block1.timestamp.should.equal(ts)
+        block1.data.should.equal('Hello World!!!')
     })
 })
