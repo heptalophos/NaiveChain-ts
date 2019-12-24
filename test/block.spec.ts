@@ -6,7 +6,7 @@ import 'mocha'
 describe ('Single Block creation and validation', () => {
 
     let block1, block2, ts, aHash, bHash
-    
+
     beforeEach (() => {
         ts = new Date().getTime()
         aHash = Block.computeHash(0, null, ts, "Hello World!!!")
@@ -32,6 +32,6 @@ describe ('Single Block creation and validation', () => {
         expect(block2.hash).to.equal(bHash)
         expect(block2.timestamp).to.equal(ts)
         expect(block2.data).to.equal('Hello Again!!')
-        console.log(block2.to_string())
+        // console.log(block2.to_string())
     })
 })
