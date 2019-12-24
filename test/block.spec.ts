@@ -3,7 +3,6 @@ import {Block} from "../src/block"
 import { expect } from 'chai'
 import 'mocha'
 
-
 describe ('Single Block creation and validation', () => {
 
     let block1, block2, ts, aHash, bHash
@@ -23,7 +22,7 @@ describe ('Single Block creation and validation', () => {
         expect(block1.hash).to.equal(aHash)
         expect(block1.timestamp).to.equal(ts)
         expect(block1.data).to.equal('Hello World!!!')
-        console.log(block1.to_string())
+        // console.log(block1.to_string())
     })
 
     it('a second block created...', () => {
