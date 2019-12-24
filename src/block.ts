@@ -29,8 +29,9 @@ class Block {
     }
 
     to_string () : string {
-        return "Block: {index : " + this.index + ", hash : " + this.hash + ", prevHash : " + this.prevHash + 
-                ", time: " + this.timestamp + ", payload: " + this.data + "}"
+        return "Block: {index : " + this.index + ", hash : " + this.hash +
+               ", prevHash : " + this.prevHash + ", time: " + this.timestamp +
+               ", payload: " + this.data + "}"
     }
 }
 
