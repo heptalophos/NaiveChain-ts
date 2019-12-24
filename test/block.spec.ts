@@ -1,8 +1,7 @@
 import {Block} from "../src/block"
 
-import { expect, should } from 'chai'
+import { expect } from 'chai'
 import 'mocha'
-
 
 describe ('Single Block creation and validation', () => {
 
