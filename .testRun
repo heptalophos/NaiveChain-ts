@@ -20,3 +20,26 @@ Block: {index : 1, hash : 0090851a86a78673843383f719ed445001d66ea4df3fbce5a825e5
   8 passing (84ms)
 
 Done in 2.15s.
+
+> yarn test 
+
+yarn run v1.19.1
+$ mocha -r ts-node/register test/*.spec.ts
+
+
+  Single Block creation and validation
+    √ generic block created, ...
+    √ a second block created...
+
+  Blockchain creation and validation
+    √ creates a new blockchain containing the genesis block
+    √ generates valid blocks
+    √ ... and adds them to the chain
+    √ gets the last block each time
+    √ validates a new block
+    √ ... and determines that it has a correct structure
+
+
+  8 passing (41ms)
+
+Done in 1.17s.
