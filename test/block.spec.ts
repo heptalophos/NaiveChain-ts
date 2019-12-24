@@ -1,18 +1,18 @@
 import {Block} from "../src/block"
 
-import { expect, should } from 'chai'
+import { expect } from 'chai'
 import 'mocha'
-
 
 describe ('Single Block creation and validation', () => {
 
-    let block1, block2, ts, newHash
-
+    let block1, block2, ts, aHash, bHash
+    
     beforeEach (() => {
         ts = new Date().getTime()
-        newHash = Block.computeHash(0, null, ts, "Hello World!!!")
-        block1 = new Block(0, newHash, null, ts, "Hello World!!!")
-        block2 = new Block(0, null, null, ts, "Hello Again!!")
+        aHash = Block.computeHash(0, null, ts, "Hello World!!!")
+        block1 = new Block(0, aHash, null, ts, "Hello World!!!")
+        bHash = Block.computeHash(1, null, ts, "Hello Again!!")
+        block2 = new Block(1, bHash, aHash, ts, "Hello Again!!")
     })
 
     it('generic block created, ...', () => {
@@ -32,6 +32,6 @@ describe ('Single Block creation and validation', () => {
         expect(block2.hash).to.equal(bHash)
         expect(block2.timestamp).to.equal(ts)
         expect(block2.data).to.equal('Hello Again!!')
-        // console.log(block2.to_string())
+        console.log(block2.to_string())
     })
 })

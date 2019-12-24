@@ -1,0 +1,22 @@
+yarn run v1.19.1
+$ mocha -r ts-node/register test/*.spec.ts
+
+
+  Single Block creation and validation
+Block: {index : 0, hash : 7a26852f209e7223775b0c94df1c23ab2bbd4964d58d2f6a22d4132686a0fd68, prevHash : null, time: 1577051182006, payload: Hello World!!!}
+    √ generic block created, ...
+Block: {index : 1, hash : 0090851a86a78673843383f719ed445001d66ea4df3fbce5a825e59a0c638983, prevHash : 62672a7d057ceeffc58ef5e8834c1a988b00700ae265bc5ef6be1033f882d06a, time: 1577051182022, payload: Hello Again!!}
+    √ a second block created...
+
+  Blockchain creation and validation
+    √ creates a new blockchain containing the genesis block
+    √ generates valid blocks
+    √ ... and adds them to the chain
+    √ gets the last block each time
+    √ validates a new block
+    √ ... and determines that it has a correct structure
+
+
+  8 passing (84ms)
+
+Done in 2.15s.

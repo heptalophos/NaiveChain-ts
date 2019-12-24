@@ -56,4 +56,6 @@ npm-debug.log
 src/*.js
 src/*.map
 
+*.lock
+
 
