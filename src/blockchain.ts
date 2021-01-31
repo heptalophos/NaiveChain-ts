@@ -1,7 +1,7 @@
 import * as CryptoJS from "crypto-js"; 
 import { Block } from "./block";
 
-class Blockchain {
+export default class Blockchain {
 
     public chain : Block[] = [];
 
@@ -57,6 +57,3 @@ class Blockchain {
         return newBlock;
     }
 }
-
-
-export { Blockchain };
