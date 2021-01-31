@@ -1,5 +1,5 @@
-import {Blockchain} from "../src/blockchain"
-import {Block} from "../src/block"
+import Blockchain from "../src/blockchain";
+import Block from "../src/block";
 
 import { expect } from 'chai'
 import 'mocha'
