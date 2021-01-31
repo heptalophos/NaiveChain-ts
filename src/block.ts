@@ -1,14 +1,18 @@
-import * as CryptoJS from "crypto-js"; 
+import * as CryptoJS from "crypto-js";
 
 
-class Block {
+export default class Block {
     public index: number;
     public hash: string;
     public prevHash: string;
     public timestamp: number;
     public data: string;
 
-    constructor(index:number, hash:string, prevHash:string, timestamp:number, data:string) {
+    constructor(index:number,
+                hash:string,
+                prevHash:string,
+                timestamp:number,
+                data:string) {
         this.index = index;
         this.prevHash = prevHash;
         this.timestamp = timestamp;
@@ -16,7 +20,10 @@ class Block {
         this.hash = hash;
     }
 
-    static computeHash (index:number, prevHash:string, timestamp:number, data:string): string {
+    static computeHash (index:number,
+                        prevHash:string,
+                        timestamp:number,
+                        data:string): string {
         return CryptoJS.SHA256(index + prevHash + timestamp + data).toString();
     }
 
@@ -36,5 +43,3 @@ class Block {
                ", payload: " + this.data + "}"
     }
 }
-
-export {Block};
