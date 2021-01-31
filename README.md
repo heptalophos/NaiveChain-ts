@@ -1,2 +1,2 @@
 
-## A naive implementation of a simple blockchain in typescript ##
+###A naive implementation of a simple blockchain in typescript###
