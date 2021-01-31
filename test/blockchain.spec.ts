@@ -1,5 +1,5 @@
-import {Blockchain} from "../src/blockchain"
-import {Block} from "../src/block"
+import Blockchain from "../src/blockchain";
+import Block from "../src/block";
 
 import { expect } from 'chai'
 import 'mocha'
@@ -19,8 +19,10 @@ describe ('Blockchain creation and validation', () => {
         expect(chain2.chain.length).to.not.equal(0)
         expect(chain1.chain[0].index).to.equal(0)
         expect(chain2.chain[0].index).to.equal(0)
-        expect(chain1.chain[0].hash).to.equal('0123456789abcdef0123456789abcdef0123456789abcdeffedcba9876543210')
-        expect(chain2.chain[0].hash).to.equal('0123456789abcdef0123456789abcdef0123456789abcdeffedcba9876543210')
+        expect(chain1.chain[0].hash).to.equal(
+            '0123456789abcdef0123456789abcdef0123456789abcdeffedcba9876543210')
+        expect(chain2.chain[0].hash).to.equal(
+            '0123456789abcdef0123456789abcdef0123456789abcdeffedcba9876543210')
         expect(chain1.chain[0].prevHash).to.be.null
         expect(chain1.chain[0].data).to.equal("Hello World")
         expect(chain1.chain[0].timestamp).to.be.a('number')
@@ -45,10 +47,14 @@ describe ('Blockchain creation and validation', () => {
         expect(chain2.chain[1].data).to.equal('Hello There!')
         expect(chain2.chain[2].data).to.equal('Hello Again!')
         expect(chain1.chain[2].data).to.equal('Hello There!')
-        expect(bl2.hash).to.equal(Block.computeHash(bl2.index, chain1.chain[0].hash, bl2.timestamp, bl2.data))
-        expect(bl3.hash).to.equal(Block.computeHash(bl3.index, chain2.chain[0].hash, bl3.timestamp, bl3.data))
-        expect(bl4.hash).to.equal(Block.computeHash(bl4.index, chain1.chain[1].hash, bl4.timestamp, bl4.data))
-        expect(bl5.hash).to.equal(Block.computeHash(bl5.index, chain2.chain[1].hash, bl5.timestamp, bl5.data))
+        expect(bl2.hash).to.equal(
+            Block.computeHash(bl2.index, chain1.chain[0].hash, bl2.timestamp, bl2.data))
+        expect(bl3.hash).to.equal(
+            Block.computeHash(bl3.index, chain2.chain[0].hash, bl3.timestamp, bl3.data))
+        expect(bl4.hash).to.equal(
+            Block.computeHash(bl4.index, chain1.chain[1].hash, bl4.timestamp, bl4.data))
+        expect(bl5.hash).to.equal(
+            Block.computeHash(bl5.index, chain2.chain[1].hash, bl5.timestamp, bl5.data))
     });
 
     it('... and adds them to the chain', () => {

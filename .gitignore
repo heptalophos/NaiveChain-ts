@@ -47,6 +47,7 @@ Temporary Items
 .apdisk
 
 # Tooling and IDE specific files and directories
+.ionide/
 .vscode/
 .idea/
 Notes.txt
