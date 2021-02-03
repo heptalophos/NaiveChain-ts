@@ -32,14 +32,12 @@ export default class Block {
             && typeof this.hash === "string"
             && typeof this.prevHash === "string"
             && typeof this.timestamp === "number"
-            // tslint:disable-next-line:semicolon
             && typeof this.data === "string"
     }
 
     to_string (): string {
         return "Block: {index : " + this.index + ", hash : " + this.hash +
                ", prevHash : " + this.prevHash + ", time: " + this.timestamp +
-               // tslint:disable-next-line:semicolon
                ", payload: " + this.data + "}"
     }
 }
