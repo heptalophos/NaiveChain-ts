@@ -44,15 +44,18 @@ export default class Blockchain {
     }
 
     computeHashForBlock (block:Block):string {
-        return Block.computeHash(block.index, block.prevHash, block.timestamp, block.data);
+        return Block.computeHash(
+            block.index, block.prevHash, block.timestamp, block.data);
     }
 
     generateBlock (blockData:string):Block {
         const prevBlock:Block = this.lastBlock();
         const nextIndex:number = prevBlock.index + 1;
         const nextTimestamp:number = new Date().getTime() / 1000;
-        const nextHash:string = this.computeHash(nextIndex, prevBlock.hash, nextTimestamp, blockData);
-        const newBlock:Block = new Block(nextIndex, nextHash, prevBlock.hash, nextTimestamp, blockData);
+        const nextHash:string = 
+            this.computeHash(nextIndex, prevBlock.hash, nextTimestamp, blockData);
+        const newBlock:Block = 
+            new Block(nextIndex, nextHash, prevBlock.hash, nextTimestamp, blockData);
         this.addBlock(newBlock, this.chain);
         return newBlock;
     }
