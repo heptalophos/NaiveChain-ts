@@ -49,6 +49,8 @@ Temporary Items
 # Tooling and IDE specific files and directories
 .ionide/
 .vscode/
+*lock.json
+package-lock.json
 .idea/
 Notes.txt
 node_modules/*
